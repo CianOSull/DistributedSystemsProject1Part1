@@ -1,10 +1,10 @@
 package Factory;
 
-import PowerPeople.hero;
+import PowerPeople.flyHero;
 
 // This interface has all the methods the hero factories will use
 public interface heroFactory {
 
-    public hero getHero();
+    public flyHero getHero();
 
 }
