@@ -6,8 +6,8 @@ import java.io.Serializable;
 
 // This is the main class for all heros
 public class hero implements Serializable, Observable {
-    String name;
-    String power;
+    private String name;
+    private String power;
 
     public hero(String n, String p){
         this.name = n;
@@ -18,7 +18,7 @@ public class hero implements Serializable, Observable {
 
     }
 
-    public void obNotify(){
+    public void notifyObservs(){
 
     }
 
