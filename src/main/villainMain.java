@@ -9,20 +9,20 @@ package main;
     SOLUTION FOR 2 MAINS, SERALIZE THE HERO OBSERVER TO THE FILE AND THEN HAVE VILLAIN DESERIALISE AND PUT INTO VILLAIN
 */
 
+import Factory.flyVillainFactory;
 import Observer.heroObserver;
+import PowerPeople.flyVillain;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 
 public class villainMain {
     public static void main(String [] args) {
-        //String filename = "battle.txt";
-        //heroObserver heroObserv = new heroObserver();
         String filename = "/home/cianosullivan/Desktop/CIT/3rd Year/Semester 1/Java projects" +
                 "/DistributedSystemsProject1/src/battleZones/battle.txt";
 
-        heroObserver object1 = null;
+        heroObserver heroOb = null;
+        flyVillainFactory flyVillainFact = new flyVillainFactory(); // Create the factory for making villains
+        flyVillain flyVil = flyVillainFact.getVillain(); // Make hte villain
 
         // Deserialization
         try {
@@ -33,55 +33,38 @@ public class villainMain {
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object
-            object1 = (heroObserver) in.readObject();
-            object1.check();
+            heroOb = (heroObserver) in.readObject();
+            flyVil.addObserver(heroOb);
 
             in.close();
             file.close();
-
-            System.out.println("Object has been deserialized ");
         }
         catch(IOException ex) {
             System.out.println("IOException is caught");
         }
-
         catch(ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
-
-
-        /*
-        OLD
-        String filename = "/home/cianosullivan/Desktop/CIT/3rd Year/Semester 1/Java projects" +
-                "/DistributedSystemsProject1/src/battle.txt";
-        heroObserver heroOb;
 
         try {
             //Saving of object in a file
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename));
 
-            heroOb = (heroObserver)ois.readObject();
-
-            flyVillainFactory flyVillainFact = new flyVillainFactory();
-            flyVillain flyVil = flyVillainFact.getVillain();
-            flyVil.addObserver(heroOb);
-
-            //Saving of object in a file
-            //FileOutputStream file = new FileOutputStream(filename);
-            //ObjectOutputStream out = new ObjectOutputStream(file);
+            // Method for serialization of object
             out.writeObject(flyVil);
+            System.out.println("The villain has been placed into the battle zone");
             flyVil.notifyObservs();
+
+            out.close();
+            file.close();
         }
         catch (Exception e) {
             // printStackTrace method
-            // prints line numbers + call stack
             e.printStackTrace();
             // Prints what exception has been thrown
             System.out.println(e);
         }
 
-         */
     }
 }
