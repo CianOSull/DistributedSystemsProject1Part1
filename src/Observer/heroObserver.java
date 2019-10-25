@@ -8,15 +8,10 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class heroObserver implements Observer, Serializable {
-    private flyHeroFactory flyHeroFact;
     private flyHero newHero;
+    private flyHeroFactory flyHeroFact = new flyHeroFactory();
     private String filename = "/home/cianosullivan/Desktop/CIT/3rd Year/Semester 1/Java projects" +
             "/DistributedSystemsProject1/src/battle.txt";
-
-
-    public heroObserver(flyHeroFactory fHF){
-        this.flyHeroFact = fHF;
-    }
 
     // When this is called, that means a villain was created and it will output the hero to deal with the villain
     public void update() {
@@ -38,6 +33,8 @@ public class heroObserver implements Observer, Serializable {
             // Prints what exception has been thrown
             System.out.println(e);
         }
-
+    }
+    public void check(){
+        System.out.println("Check has been run");
     }
 }
