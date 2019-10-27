@@ -5,9 +5,8 @@ import PowerPeople.flyHero;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
-public class heroObserver implements Observer, Serializable {
+public class heroObserver {
     private flyHero newHero;
     private flyHeroFactory flyHeroFact = new flyHeroFactory();
     private String filename = "/home/cianosullivan/Desktop/CIT/3rd Year/Semester 1/Java projects" +

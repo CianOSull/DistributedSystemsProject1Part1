@@ -4,12 +4,11 @@ package Observer;
 public interface Observable {
 
     // This will add the observers that will be notified when a change occurs,
-    //public void addObserver(Object observer);
+    public void addObserver(fileObserver observer);
 
     // Notify the observers
-    public void notifyObservs();
+    private void notifyObservs(boolean makeHero) {}
 
-    // Remove an unneeded observer
-    //public void removeObserver();
+    public void watchDirectory();
 
 }

@@ -2,6 +2,6 @@ package Observer;
 
 public interface Observer {
 
-    public void update();
+    public void update(boolean makeHero);
 
 }
