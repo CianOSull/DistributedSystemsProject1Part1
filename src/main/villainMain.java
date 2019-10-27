@@ -9,14 +9,9 @@ package main;
     SOLUTION FOR 2 MAINS, SERALIZE THE HERO OBSERVER TO THE FILE AND THEN HAVE VILLAIN DESERIALISE AND PUT INTO VILLAIN
 */
 
-import Factory.flyVillainFactory;
-import Observer.heroObserver;
-import PowerPeople.flyVillain;
-
-import java.io.*;
-
 public class villainMain {
     public static void main(String [] args) {
+        /*
         String filename = "/home/cianosullivan/Desktop/CIT/3rd Year/Semester 1/Java projects" +
                 "/DistributedSystemsProject1/src/battleZones/battle.txt";
 
@@ -65,6 +60,8 @@ public class villainMain {
             // Prints what exception has been thrown
             System.out.println(e);
         }
+
+         */
 
     }
 }
