@@ -4,11 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 
-/*
-use no villain to decide which to make and have the file check work after watch direcotry and it will put the villain
-into teh file if it exists and if it doesnt then create and put in
- */
-
 public class fileObservable implements Observable {
     private fileObserver fileOb;
     private File battleFile = new File("/home/cianosullivan/Desktop/CIT/3rd Year/Semester 1/Java projects" +
@@ -41,20 +36,23 @@ public class fileObservable implements Observable {
                     StandardWatchEventKinds.ENTRY_MODIFY);
 
             WatchKey key;
-            while ((key = watchService.take()) != null){
-                for(WatchEvent<?> event : key.pollEvents()) {
+            while ((key = watchService.take()) != null) {
+                for (WatchEvent<?> event : key.pollEvents()) {
                     //process
                     System.out.println("Event kind:" + event.kind() + ". File affected: " + event.context() + ".");
-                    if(event.kind() == StandardWatchEventKinds.ENTRY_CREATE && noVillain){
-                        notifyObservs(false); // Make a villain
+                    if(event.kind() == StandardWatchEventKinds.ENTRY_MODIFY && noVillain){
+                        // False so it makes a villain
+                        notifyObservs(false);
                         noVillain = false;
-                        break;
+                        //break;
                     }
                     else if(event.kind() == StandardWatchEventKinds.ENTRY_MODIFY && !noVillain){
-                        notifyObservs(true); // Make a hero
+                        // True so it makes a hero
+                        notifyObservs(true);
                         noVillain = true;
-                        break;
+                        //break;
                     }
+                    break;
                 }
                 key.reset();
             }
@@ -63,17 +61,4 @@ public class fileObservable implements Observable {
             e.printStackTrace();
         }
     }
-
 }
-
-//        if(!battleFile.exists()){
-//            try {
-//                this.battleFile = File.createTempFile("battle", ".txt", new File("/home" +
-//                        "/cianosullivan/Desktop/CIT/3rd Year/Semester 1/Java projects/DistributedSystemsProject1" +
-//                        "/src/battleZones"));
-//            }
-//            catch(Exception e) {
-//                // if any error occurs
-//                e.printStackTrace();
-//            }
-//        }

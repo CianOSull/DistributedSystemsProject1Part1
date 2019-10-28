@@ -93,6 +93,8 @@ public class fileObserver implements Observer {
                 "/DistributedSystemsProject1/src/battlesDone/battle1.txt"));
         if(checkFile){
             System.out.println("Was successful");
+            // Create a new file to be used
+            createFile();
         }
         else {
             System.out.println("Failed");
